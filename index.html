@@ -120,6 +120,9 @@
       authInput.addEventListener('change', function() {
         localStorage.setItem('api-authorization', authInput.value)
       })
+
+      urlInput.value = localStorage.getItem('api-url') || ''
+      authInput.value = localStorage.getItem('api-authorization') || ''
     }
 
     ReactDOM.render(
