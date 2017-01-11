@@ -24,10 +24,10 @@
     }
   </style>
 
-  <script src="//cdn.jsdelivr.net/es6-promise/4.0.5/es6-promise.auto.min.js"></script>
-  <script src="//cdn.jsdelivr.net/fetch/0.9.0/fetch.min.js"></script>
-  <script src="//cdn.jsdelivr.net/react/15.4.2/react.min.js"></script>
-  <script src="//cdn.jsdelivr.net/react/15.4.2/react-dom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/es6-promise/4.0.5/es6-promise.auto.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/fetch/0.9.0/fetch.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/react/15.4.2/react.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/react/15.4.2/react-dom.min.js"></script>
 
   <link rel="stylesheet" href="./graphiql.v0.8.1.css" />
   <script src="./graphiql.v0.8.1.min.js"></script>
@@ -86,8 +86,12 @@
     }
 
     function graphQLFetcher(graphQLParams) {
-      var url = localStorage.getItem('api-url') || '/graphql';
-      var auth = localStorage.getItem('api-authorization') || '';
+      var url = localStorage.getItem('api-url');
+      var auth = localStorage.getItem('api-authorization');
+
+      if (!url || !auth) {
+        return Promise.resolve('Set the URL and Authorization fields')
+      }
 
       return fetch(url, {
         method: 'post',
